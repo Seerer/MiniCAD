@@ -30,7 +30,7 @@ public class Text extends Shape{
         textheight = StringBounds.getHeight();
         if (content != "")
             text.drawString(content, (int)(getX1() - textwidth/2), (int)(getY1() + textwidth/2));
-        //nitPoint();
+        //initPoint();
     }
 
 

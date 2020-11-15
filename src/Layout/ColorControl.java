@@ -1,4 +1,6 @@
 package Layout;
 
-public class ColorControl {
+import javax.swing.*;
+
+public class ColorControl extends JPanel {
 }

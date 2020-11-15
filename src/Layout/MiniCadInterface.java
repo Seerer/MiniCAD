@@ -35,28 +35,44 @@ public class MiniCadInterface extends JFrame {
 
     public MiniCadInterface(){
         super.setTitle("MyMiniCAD");
-        super.setSize(1200, 1000);
+        super.setSize(1600, 1200);
 
         //substantiate toolbar
         tool = new ToolBar();
         super.add(tool, BorderLayout.WEST);
 
-        //substantiate draw_plane
+        //substantiate draw_plane and Canvas
         draw_plane = new JPanel();
         draw_plane.setLayout(null);
         draw_plane.setBackground(Color.GRAY);
 
         //substantiate canvas
         canvas = new Canvas();
+        canvas.setBounds(10, 10, canvas.getWidth(), canvas.getHeight());
 
+        draw_plane.add(canvas);
+        draw_plane.setPreferredSize(new Dimension(canvas.getWidth() + 10, canvas.getHeight() + 10));
+        JScrollPane jsp = new JScrollPane();
+        //super.setContentPane(jsp);
+        super.getContentPane().add(jsp);
 
         //substantiate FontBar
         font_pool = new FontControl();
         super.add(font_pool, BorderLayout.NORTH);
 
         //substantiate platte
+        JPanel south_panel = new JPanel();
+        south_panel.setLayout(null);
+        south_panel.setPreferredSize(new Dimension(super.getWidth(), 100));
+        palette = new ColorControl();
+        palette.setBounds(16, 12, super.getWidth() - 16, 50);
 
         //substantiate status
+        status = new JLabel();
+        status.setBounds(16, 66, super.getWidth() - 16, 15);
+        south_panel.add(status);
+        super.add(south_panel, BorderLayout.SOUTH);
+        status.setText("Welcome words");
 
         //substantiate menu
         menu = new MenuBar(canvas);

@@ -78,6 +78,16 @@ public class MiniCadInterface extends JFrame {
         menu = new MenuBar(canvas);
         super.setJMenuBar(menu);
 
+        public void InitGraphics(){
+            Image image_cursor_brush = Toolkit.getDefaultToolkit().getImage("");
+            Image image_cursor_delete = Toolkit.getDefaultToolkit().getImage("");
+            Image image_cursor_resize = Toolkit.getDefaultToolkit().getImage("");
+
+
+        }
+
+
+
         super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         super.setLocationRelativeTo(null);
         super.setVisible(true);
@@ -86,9 +96,8 @@ public class MiniCadInterface extends JFrame {
     public void DrawListener(){
 
     }
-
-
-
-
-
+    public static void main(String args[]){
+        MiniCadInterface minicad = new MiniCadInterface();
+        minicad.InitGraphics();
+    }
 }

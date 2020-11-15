@@ -60,7 +60,7 @@ public class MiniCadInterface extends JFrame {
 
         //substantiate menu
         menu = new MenuBar(canvas);
-        super.setMenuBar(menu);
+        super.setJMenuBar(menu);
 
         super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         super.setLocationRelativeTo(null);

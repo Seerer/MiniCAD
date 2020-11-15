@@ -82,6 +82,10 @@ public class Shape implements Serializable {
         return y2;
     }
 
+    public float getStroke() {
+        return stroke;
+    }
+
     public String getShape() {
         return shape;
     }
@@ -90,8 +94,8 @@ public class Shape implements Serializable {
         return color;
     }
 
-    public float getStroke() {
-        return stroke;
+    public boolean Contains(int x, int y){
+        return points_sequence.contains(new Point(x, y));
     }
 
 }

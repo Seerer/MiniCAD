@@ -55,6 +55,10 @@ public class ColorControl extends JPanel {
         return cur_panel;
     }
 
+    public Color GetCurrentColor(){
+        return cur_panel.getBackground();
+    }
+
     public void setColor(Color c){
         cur_panel.setBackground(c);
     }

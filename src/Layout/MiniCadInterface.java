@@ -1,7 +1,13 @@
 package Layout;
 
+import shapes.*;
+import shapes.Rectangle;
+import shapes.Shape;
+
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class MiniCadInterface extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -22,10 +28,11 @@ public class MiniCadInterface extends JFrame {
     private int x1, y1, x2, y2;
     //当前中心位置
     private int cx, cy;
+    private int font_style;
     private int font_size;
     private int mouse_press;
     private int mouse_wheel;
-    //private int shape_index;
+    private int shape_index;
 
     private String font;
     private String context;
@@ -78,24 +85,48 @@ public class MiniCadInterface extends JFrame {
         menu = new MenuBar(canvas);
         super.setJMenuBar(menu);
 
-        public void InitGraphics(){
-            Image image_cursor_brush = Toolkit.getDefaultToolkit().getImage("");
-            Image image_cursor_delete = Toolkit.getDefaultToolkit().getImage("");
-            Image image_cursor_resize = Toolkit.getDefaultToolkit().getImage("");
-
-
-        }
-
-
 
         super.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         super.setLocationRelativeTo(null);
         super.setVisible(true);
     }
 
-    public void DrawListener(){
+    public void InitGraphics(){
+        Image image_cursor_brush = Toolkit.getDefaultToolkit().getImage("");
+        Image image_cursor_delete = Toolkit.getDefaultToolkit().getImage("");
+        Image image_cursor_resize = Toolkit.getDefaultToolkit().getImage("");
 
+        palette.GetCurrentPanel().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                color = palette.GetCurrentColor();
+                if (shape_index != 1 && shape_index <= canvas.GetShapeNum())
+                    UpdateShape();
+            }
+        });
+
+        font_pool
     }
+
+    private void UpdateShape(){
+        CreateNewShape();
+        canvas.SetShape(shape_index, cur_shape);
+    }
+
+    public void CreateNewShape(){
+        menu.setIs_updated(true);
+        if (cur_shape_type.equals("Line"))
+            cur_shape = new Line(x1, y1, x2, y2, "Line", color, stroke);
+        else if (cur_shape.equals("Rectangle"))
+            cur_shape = new Rectangle(x1, y1, x2, y2, "Rectangle", color, stroke);
+        else if (cur_shape.equals("Circle"))
+            cur_shape = new Circle(x1, y1, x2, y2, "Circle", color, stroke);
+        else if (cur_shape.equals("Ellipse"))
+            cur_shape = new Ellipse(x1, y1, x2, y2, "Ellipse", color, stroke);
+        else
+            cur_shape = new Text(x1, y1, x2, y2, "Text", color, stroke, font, context, font_style, font_size);
+    }
+
     public static void main(String args[]){
         MiniCadInterface minicad = new MiniCadInterface();
         minicad.InitGraphics();

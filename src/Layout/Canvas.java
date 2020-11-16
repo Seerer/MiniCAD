@@ -31,6 +31,10 @@ public class Canvas extends JPanel {
         return shape_list.get(index);
     }
 
+    public void SetShape(int i, Shape s){
+        shape_list.set(i, s);
+    }
+
     public void RemoveShape(int index){
         shape_list.remove(index);
     }
